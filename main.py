@@ -20,7 +20,7 @@ load_dotenv()
 app = FastAPI(title="Speech to Text API")
 
 # CORS for frontend (allow Netlify and localhost)
-ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "http://localhost:5173").split(",")
+ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "http://localhost:5173,https://speechtotext07.netlify.app").split(",")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=ALLOWED_ORIGINS,
@@ -38,7 +38,6 @@ def get_whisper_model():
     if whisper_model is None:
         whisper_model = whisper.load_model(os.getenv("WHISPER_MODEL", "base"))
     return whisper_model
-
 
 
 
